@@ -16,11 +16,11 @@ const SiteHeader = () => {
             Property
           </Link>
           <Button variant="cta" size="sm" asChild>
-            <a href="mailto:hello@digitalandai.co.uk">Get in touch</a>
+            <a href="mailto:ed.lobbett@thecakemix.co.uk">Get in touch</a>
           </Button>
         </nav>
         <Button variant="cta" size="sm" className="md:hidden" asChild>
-          <a href="mailto:hello@digitalandai.co.uk">Get in touch</a>
+          <a href="mailto:ed.lobbett@thecakemix.co.uk">Get in touch</a>
         </Button>
       </div>
     </header>

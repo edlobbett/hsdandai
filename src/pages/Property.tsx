@@ -66,7 +66,7 @@ const Property = () => {
                 Fixed-scope HubSpot implementation for property operators — connecting systems, automating workflows, and building the pipeline visibility your team is missing. Delivered in weeks, not months.
               </p>
               <Button variant="cta" className="text-base px-8 h-12" asChild>
-                <a href="mailto:hello@digitalandai.co.uk">
+                <a href="https://calendly.com/thecakemix/15min">
                   Discuss a sprint
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
@@ -203,7 +203,7 @@ const Property = () => {
               Book a short call. I'll review your HubSpot and PMS setup, tell you what I'd fix first, and give you a clear scope and price. No commitment, no pitch deck.
             </p>
             <Button variant="cta" size="lg" className="text-base px-8 h-12" asChild>
-              <a href="mailto:hello@digitalandai.co.uk">
+              <a href="https://calendly.com/thecakemix/15min">
                 Book a short call
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>

@@ -20,8 +20,8 @@ const SiteFooter = () => {
           </div>
           <div>
             <p className="text-sm font-semibold mb-3">Contact</p>
-            <a href="mailto:hello@digitalandai.co.uk" className="text-sm opacity-70 hover:opacity-100 transition-opacity">
-              hello@digitalandai.co.uk
+            <a href="mailto:ed.lobbett@thecakemix.co.uk" className="text-sm opacity-70 hover:opacity-100 transition-opacity">
+              ed.lobbett@thecakemix.co.uk
             </a>
           </div>
         </div>
