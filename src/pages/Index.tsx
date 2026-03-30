@@ -79,7 +79,7 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="hero" asChild>
-                  <a href="mailto:hello@digitalandai.co.uk">
+                  <a href="https://calendly.com/thecakemix/15min">
                     Discuss a sprint
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
@@ -150,7 +150,7 @@ const Index = () => {
                   Simple, fast, senior-led
                 </h2>
                 <p className="text-muted-foreground text-lg mb-8">
-                  This is practical implementation work, not a consulting engagement. You get a senior specialist doing the work — not managing a team of juniors.
+                  This is practical implementation work, not a consulting engagement. You get a senior specialist doing all of the work — not managing a team of juniors.
                 </p>
                 <div className="space-y-4">
                   {benefits.map((item) => (
@@ -245,7 +245,7 @@ const Index = () => {
               Book a short call. I'll tell you what I'd fix first, what it would cost, and whether a sprint makes sense. No pitch deck, no pressure.
             </p>
             <Button variant="cta" size="lg" className="text-base px-8 h-12" asChild>
-              <a href="mailto:hello@digitalandai.co.uk">
+              <a href="https://calendly.com/thecakemix/15min">
                 Book a short call
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
