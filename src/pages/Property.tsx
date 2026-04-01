@@ -137,7 +137,7 @@ const Property = () => {
             </h2>
             <div className="text-muted-foreground space-y-4 text-base leading-relaxed">
               <p>
-                I built the automated customer and data systems in HubSpot for Housing Hand — a UK guarantor service operating across the rental market.
+                Along with property operators, I built the automated customer and data systems in HubSpot for Housing Hand - a UK guarantor service operating across the rental market.
               </p>
               <p>
                 The work covered customer lifecycle automation from application through to renewal, integrating HubSpot with their operational systems, building pipeline reporting, and setting up the communication workflows that let a small team handle high volumes without manual follow-up.
