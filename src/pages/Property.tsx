@@ -60,10 +60,10 @@ const Property = () => {
                 HubSpot for property operators
               </p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-600 leading-tight mb-6 text-balance">
-                Connect your PMS to HubSpot. Fix the tenant journey. Get ready for May.
+                Connect your PMS to HubSpot. Fix the tenant journey. All at a fixed price
               </h1>
               <p className="text-lg md:text-xl opacity-80 leading-relaxed mb-8 max-w-2xl">
-                Fixed-scope HubSpot implementation for property operators — connecting systems, automating workflows, and building the pipeline visibility your team is missing. Delivered in weeks, not months.
+                Property specialist HubSpot consultant offering fixed-scope HubSpot improvements for property operators - connecting systems, automating workflows, and building the pipeline visibility your team is missing. Delivered in weeks, not months.
               </p>
               <Button variant="cta" className="text-base px-8 h-12" asChild>
                 <a href="https://calendly.com/thecakemix/15min">
