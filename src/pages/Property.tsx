@@ -131,7 +131,7 @@ const Property = () => {
         {/* Housing Hand */}
         <section className="py-20 md:py-24 bg-muted/40">
           <div className="container max-w-3xl">
-            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">Proof of work</p>
+            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">SPECIALISING IN TENANT ONBOARDING, DATA AND JOURNEY FLOWS</p>
             <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-6">
               Housing Hand
             </h2>
