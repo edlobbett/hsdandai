@@ -132,7 +132,7 @@ const Index = () => {
                 >
                   <item.icon className="h-5 w-5 text-accent mb-3" />
                   <h3 className="font-serif text-lg font-600 text-foreground mb-1">{item.title}</h3>
-                  <p className="text-xs font-semibold text-accent mb-3">{item.price}</p>
+                  <p className="text-xs font-semibold text-accent mb-3 whitespace-pre-line">{item.price}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                 </div>
               ))}
