@@ -8,21 +8,21 @@ const offerings = [
   {
     icon: Target,
     title: "HubSpot Sprint",
-    price: "Fixed price · 2–4 weeks",
+    price: "2–4 weeks\nPrice Range £950 - £3,750\n\n",
     description:
       "A focused implementation sprint. We scope what needs fixing, build it, document it, and hand it over. No ongoing retainer.",
   },
   {
     icon: FileText,
     title: "Audit + Action Plan",
-    price: "Fixed price · 1 week",
+    price: "1 week\n£1,300\n\n",
     description:
       "A detailed review of your HubSpot setup with a prioritised action plan. You'll know exactly what's broken, what to fix first, and what it'll cost.",
   },
   {
     icon: Wrench,
     title: "Focused support",
-    price: "Day rate · as needed",
+    price: "Day rate · £500",
     description:
       "Senior HubSpot implementation support for specific problems — integrations, automations, reporting, data cleanup. Scoped tightly, delivered fast.",
   },
@@ -72,10 +72,10 @@ const Index = () => {
                 HubSpot implementation specialist
               </p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-600 leading-tight text-foreground mb-6 text-balance">
-                Fix your HubSpot. Fast, scoped, no retainer.
+                Fix HubSpot. Fast, fixed-price, no retainer.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-                Senior HubSpot implementation support for teams that need it working properly — without hiring a full-time person or signing up to an agency retainer. Fixed-scope sprints. Clear deliverables. Done in weeks, not months.
+                Senior HubSpot implementation support for teams that need it working properly - without hiring a full-time person or signing up to an agency retainer. Fixed-scope, fixed-price sprints. Clear deliverables. Done in weeks, not months. Typical price range £950 - £3,750
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="hero" asChild>
@@ -132,7 +132,7 @@ const Index = () => {
                 >
                   <item.icon className="h-5 w-5 text-accent mb-3" />
                   <h3 className="font-serif text-lg font-600 text-foreground mb-1">{item.title}</h3>
-                  <p className="text-xs font-semibold text-accent mb-3">{item.price}</p>
+                  <p className="text-xs font-semibold text-accent mb-3 whitespace-pre-line">{item.price}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                 </div>
               ))}
