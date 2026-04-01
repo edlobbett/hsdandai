@@ -72,10 +72,10 @@ const Index = () => {
                 HubSpot implementation specialist
               </p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-600 leading-tight text-foreground mb-6 text-balance">
-                Fix your HubSpot. Fast, scoped, no retainer.
+                Fix HubSpot. Fast, fixed-price, no retainer.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-                Senior HubSpot implementation support for teams that need it working properly — without hiring a full-time person or signing up to an agency retainer. Fixed-scope sprints. Clear deliverables. Done in weeks, not months.
+                Senior HubSpot implementation support for teams that need it working properly - without hiring a full-time person or signing up to an agency retainer. Fixed-scope, fixed-price sprints. Clear deliverables. Done in weeks, not months. Typical price range £950 - £3,750
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="hero" asChild>
