@@ -8,21 +8,21 @@ const offerings = [
   {
     icon: Target,
     title: "HubSpot Sprint",
-    price: "Fixed price · 2–4 weeks",
+    price: "2–4 weeks\nPrice Range £950 - £3,750\n\n",
     description:
       "A focused implementation sprint. We scope what needs fixing, build it, document it, and hand it over. No ongoing retainer.",
   },
   {
     icon: FileText,
     title: "Audit + Action Plan",
-    price: "Fixed price · 1 week",
+    price: "1 week\n£1,300\n\n",
     description:
       "A detailed review of your HubSpot setup with a prioritised action plan. You'll know exactly what's broken, what to fix first, and what it'll cost.",
   },
   {
     icon: Wrench,
     title: "Focused support",
-    price: "Day rate · as needed",
+    price: "Day rate · £500",
     description:
       "Senior HubSpot implementation support for specific problems — integrations, automations, reporting, data cleanup. Scoped tightly, delivered fast.",
   },
