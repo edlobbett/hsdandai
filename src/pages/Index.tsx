@@ -77,7 +77,21 @@ const Index = () => {
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
                 Senior HubSpot support for teams that need it working properly - without hiring a full-time person or signing up to an agency retainer. Fixed-scope, fixed-price sprints. Clear deliverables. Done in weeks, not months. Typical price range £950 - £3,750
               </p>
-...
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button variant="hero" asChild>
+                  <a href="https://calendly.com/thecakemix/15min">
+                    Discuss a sprint
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+                <Button variant="hero-outline" asChild>
+                  <Link to="/property">Property operators →</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Credibility bar */}
         <section className="border-y border-border bg-muted/50 py-6">
           <div className="container">
