@@ -85,7 +85,7 @@ const Property = () => {
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-accent" />
-                <span>HubSpot certified</span>
+                <span>HubSpot Specialist</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-accent" />
