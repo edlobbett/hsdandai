@@ -19,14 +19,14 @@ const SiteFooter = () => {
             </div>
           </div>
           <div>
-            <p className="text-sm font-semibold mb-3">Contact</p>
+            <p className="text-sm font-semibold mb-3"> </p>
             <a href="mailto:ed.lobbett@thecakemix.co.uk" className="text-sm opacity-70 hover:opacity-100 transition-opacity">
-              ed.lobbett@thecakemix.co.uk
+               
             </a>
           </div>
         </div>
         <div className="mt-8 pt-6 border-t border-surface-dark-foreground/10 text-xs opacity-50">
-          © {new Date().getFullYear()} Digital & AI. All rights reserved.
+          © {new Date().getFullYear()} Thin Layer Consulting Ltd. All rights reserved.
         </div>
       </div>
     </footer>
