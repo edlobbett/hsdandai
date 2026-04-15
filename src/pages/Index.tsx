@@ -69,13 +69,13 @@ const Index = () => {
           <div className="container max-w-3xl">
             <div className="animate-fade-in-up">
               <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">
-                HubSpot implementation specialist
+                HUBSPOT SPECIALIST
               </p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-600 leading-tight text-foreground mb-6 text-balance">
                 Fix HubSpot. Fast, fixed-price, no retainer.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-                Senior HubSpot implementation support for teams that need it working properly - without hiring a full-time person or signing up to an agency retainer. Fixed-scope, fixed-price sprints. Clear deliverables. Done in weeks, not months. Typical price range £950 - £3,750
+                Senior HubSpot support for teams that need it working properly - without hiring a full-time person or signing up to an agency retainer. Fixed-scope, fixed-price sprints. Clear deliverables. Done in weeks, not months. Typical price range £950 - £3,750
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="hero" asChild>
@@ -98,7 +98,7 @@ const Index = () => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-accent" />
-                <span>HubSpot certified</span>
+                <span>HubSpot Specialist</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-accent" />
