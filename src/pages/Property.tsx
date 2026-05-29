@@ -81,7 +81,7 @@ const Property = () => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-accent" />
-                <span>Built automated customer systems for <strong className="text-foreground">Housing Hand</strong></span>
+                <span>Built automated customer systems for <strong className="text-foreground">Tenant and Journey Flows</strong></span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-accent" />
@@ -133,11 +133,11 @@ const Property = () => {
           <div className="container max-w-3xl">
             <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">SPECIALISING IN TENANT ONBOARDING, DATA AND JOURNEY FLOWS</p>
             <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-6">
-              Housing Hand
+              BTR and PBSA
             </h2>
             <div className="text-muted-foreground space-y-4 text-base leading-relaxed">
               <p>
-                Along with property operators, I built the automated customer and data systems in HubSpot for Housing Hand - a UK guarantor service operating across the rental market.
+                Along with property operators, I built the automated customer and data systems in HubSpot for a UK guarantor service operating across the rental market.
               </p>
               <p>
                 The work covered customer lifecycle automation from application through to renewal, integrating HubSpot with their operational systems, building pipeline reporting, and setting up the communication workflows that let a small team handle high volumes without manual follow-up.
