@@ -1,26 +1,23 @@
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Wrench, BarChart3, Cpu } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const tracks = [
   {
-    icon: Wrench,
     title: "HubSpot Sprints",
     description:
       "Fix HubSpot fast. Fixed-price, fixed-scope implementations in days, not months.",
     link: "/hubspot-sprints",
   },
   {
-    icon: BarChart3,
     title: "Revenue Operations",
     description:
       "Build the stack that connects your pipeline, data, and outreach. Apollo, CRM, enrichment, automation.",
     link: "/revops",
   },
   {
-    icon: Cpu,
     title: "Digital & AI",
     description:
       "Digital transformation done properly — strategy, data, systems design, and AI when the foundations are right.",
@@ -81,16 +78,13 @@ const Index = () => {
       <SiteHeader />
       <main className="flex-1">
         {/* Hero */}
-        <section className="py-20 md:py-28 lg:py-32">
-          <div className="container max-w-4xl">
+        <section className="bg-white py-32">
+          <div className="max-w-6xl mx-auto px-8">
             <div className="animate-fade-in-up text-center">
-              <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">
-                THIN LAYER CONSULTING LTD
-              </p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-600 leading-tight text-foreground mb-6 text-balance">
                 Digital transformation. Revenue operations. HubSpot.
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-slate-600 leading-relaxed mb-8 max-w-xl mx-auto">
                 Senior consulting and implementation for growing businesses — fixed-scope, fixed-price, no retainer.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -110,9 +104,9 @@ const Index = () => {
         </section>
 
         {/* Trust bar */}
-        <section className="border-y border-border bg-muted/50 py-6">
-          <div className="container">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-sm text-muted-foreground">
+        <section className="bg-[#F5F3F0] border-y border-border py-6">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-sm text-slate-700">
               {trustItems.map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-accent" />
@@ -124,14 +118,14 @@ const Index = () => {
         </section>
 
         {/* Service tracks */}
-        <section className="py-20 md:py-24">
-          <div className="container">
+        <section className="bg-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
             <div className="max-w-2xl mb-12">
-              <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">What we do</p>
-              <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-4">
+              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">What we do</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-600 leading-tight text-foreground mb-4">
                 Three areas. One approach.
               </h2>
-              <p className="text-muted-foreground text-lg">
+              <p className="text-slate-700 text-lg">
                 Each engagement is scoped, priced, and delivered with a clear handover. No open-ended retainers.
               </p>
             </div>
@@ -140,13 +134,15 @@ const Index = () => {
                 <Link
                   key={item.title}
                   to={item.link}
-                  className="p-6 rounded-lg border border-border bg-card hover:shadow-md transition-shadow group block"
+                  className="p-8 rounded-lg border border-[#E8E4DF] bg-[#FAF8F5] hover:shadow-md transition-shadow group block"
                 >
-                  <item.icon className="h-5 w-5 text-accent mb-3" />
-                  <h3 className="font-serif text-lg font-600 text-foreground mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="font-serif text-2xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                  <p className="text-slate-700 text-sm leading-relaxed">{item.description}</p>
+                  <p className="mt-4 text-sm font-medium text-accent">
+                    Learn more →
+                  </p>
                 </Link>
               ))}
             </div>
@@ -154,14 +150,14 @@ const Index = () => {
         </section>
 
         {/* Who this is for */}
-        <section className="py-20 md:py-24 bg-muted/40">
-          <div className="container">
+        <section className="bg-[#FAF8F5] py-20">
+          <div className="max-w-6xl mx-auto px-8">
             <div className="max-w-2xl mb-12">
-              <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">Who this is for</p>
-              <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-4">
+              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">Who this is for</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-600 leading-tight text-foreground mb-4">
                 Teams that need systems to work — not a team to manage them
               </h2>
-              <p className="text-muted-foreground text-lg">
+              <p className="text-slate-700 text-lg">
                 You need someone senior to come in, fix what's broken, build what's missing, and hand it back in a state your team can manage.
               </p>
             </div>
@@ -169,10 +165,10 @@ const Index = () => {
               {personas.map((item) => (
                 <div
                   key={item.title}
-                  className="p-6 rounded-lg border border-border bg-card"
+                  className="p-6 rounded-lg border border-border bg-white"
                 >
                   <h3 className="font-serif text-lg font-600 text-foreground mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                  <p className="text-slate-700 text-sm leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -180,14 +176,14 @@ const Index = () => {
         </section>
 
         {/* Outcomes */}
-        <section className="py-20 md:py-24">
-          <div className="container">
+        <section className="bg-white py-20">
+          <div className="max-w-6xl mx-auto px-8">
             <div className="max-w-2xl mb-12">
-              <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">What changes</p>
-              <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-4">
+              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">What changes</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-600 leading-tight text-foreground mb-4">
                 Systems that actually work for your business
               </h2>
-              <p className="text-muted-foreground text-lg">
+              <p className="text-slate-700 text-lg">
                 Most teams use a fraction of what their tools can do. We close that gap.
               </p>
             </div>
@@ -195,10 +191,10 @@ const Index = () => {
               {outcomesList.map((item) => (
                 <div
                   key={item.title}
-                  className="p-6 rounded-lg border border-border bg-card hover:shadow-md transition-shadow"
+                  className="p-6 rounded-lg border border-border bg-white hover:shadow-md transition-shadow"
                 >
                   <h3 className="font-serif text-lg font-600 text-foreground mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                  <p className="text-slate-700 text-sm leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -206,20 +202,22 @@ const Index = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-20 md:py-24 bg-surface-dark text-surface-dark-foreground">
-          <div className="container text-center max-w-2xl">
-            <h2 className="font-serif text-3xl md:text-4xl font-600 mb-4">
-              Let's talk about what you need
-            </h2>
-            <p className="text-lg opacity-70 mb-8">
-              A short call to understand your setup. You'll get clear thoughts on what needs fixing and how we'd approach it. No pitch deck, no pressure.
-            </p>
-            <Button variant="cta" size="lg" className="text-base px-8 h-12" asChild>
-              <a href="https://calendly.com/thecakemix/15min">
-                Book a short call
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
+        <section className="bg-[#1C2B3A] py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="font-serif text-3xl md:text-4xl font-600 mb-4 text-white">
+                Let's talk about what you need
+              </h2>
+              <p className="text-lg text-white/70 mb-8">
+                A short call to understand your setup. You'll get clear thoughts on what needs fixing and how we'd approach it. No pitch deck, no pressure.
+              </p>
+              <Button variant="cta" size="lg" className="text-base px-8 h-12" asChild>
+                <a href="https://calendly.com/thecakemix/15min">
+                  Book a short call
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
