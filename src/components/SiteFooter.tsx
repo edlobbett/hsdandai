@@ -15,7 +15,11 @@ const SiteFooter = () => {
             <p className="text-sm font-semibold mb-3">Pages</p>
             <div className="flex flex-col gap-2">
               <Link to="/" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Home</Link>
+              <Link to="/hubspot-sprints" className="text-sm opacity-70 hover:opacity-100 transition-opacity">HubSpot Sprints</Link>
+              <Link to="/revops" className="text-sm opacity-70 hover:opacity-100 transition-opacity">RevOps</Link>
+              <Link to="/digital-ai" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Digital &amp; AI</Link>
               <Link to="/property" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Property</Link>
+              <Link to="/insights" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Insights</Link>
             </div>
           </div>
           <div>

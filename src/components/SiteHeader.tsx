@@ -8,12 +8,24 @@ const SiteHeader = () => {
         <Link to="/" className="font-serif text-xl font-semibold text-foreground tracking-tight">
           Digital & AI
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Home
           </Link>
+          <Link to="/hubspot-sprints" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            HubSpot Sprints
+          </Link>
+          <Link to="/revops" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            RevOps
+          </Link>
+          <Link to="/digital-ai" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Digital &amp; AI
+          </Link>
           <Link to="/property" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Property
+          </Link>
+          <Link to="/insights" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Insights
           </Link>
           <Button variant="cta" size="sm" asChild>
             <a href="mailto:ed.lobbett@thecakemix.co.uk">Get in touch</a>
