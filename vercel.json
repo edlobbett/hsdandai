@@ -1,5 +1,12 @@
 {
+  "version": 2,
+  "buildCommand": "",
+  "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/hubspot-sprints", "destination": "/hubspot-sprints/index.html" },
+    { "source": "/revops", "destination": "/revops/index.html" },
+    { "source": "/digital-ai", "destination": "/digital-ai/index.html" },
+    { "source": "/property", "destination": "/property/index.html" },
+    { "source": "/insights", "destination": "/insights/index.html" }
   ]
 }
