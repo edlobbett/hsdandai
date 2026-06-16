@@ -1,6 +1,6 @@
 export default function RevOpsStackDiagram() {
   return (
-    <div className="w-full overflow-x-auto py-4">
+    <div className="w-full overflow-x-auto py-4 max-w-3xl mx-auto">
       <svg width="100%" viewBox="0 0 680 590" role="img">
         <title>RevOps stack diagram</title>
         <desc>Four clusters: Strategy at top, Data and signals left, Execution right, Infrastructure bottom.</desc>
@@ -79,10 +79,7 @@ export default function RevOpsStackDiagram() {
         <line x1="340" y1="425" x2="340" y2="132" stroke="#5F5E5A" strokeWidth="1.5" markerEnd="url(#arrow)" opacity="0.6" strokeDasharray="4,3"/>
 
         {/* Labels */}
-        <text x="152" y="135" textAnchor="start" fontSize="10" fill="#888">Informs ICP</text>
-        <text x="152" y="155" textAnchor="start" fontSize="10" fill="#888">Targets signals</text>
-        <text x="340" y="268" textAnchor="middle" fontSize="10" fill="#888">Feeds CRM and outreach</text>
-        <text x="510" y="135" textAnchor="middle" fontSize="10" fill="#888">Pipeline → reporting</text>
+
 
         {/* Legend */}
         <rect x="20" y="548" width="10" height="10" rx="2" fill="#444441"/>
