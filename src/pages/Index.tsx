@@ -148,38 +148,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Service tracks */}
-        <section className="bg-[#FAF8F5] py-20">
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="max-w-2xl mb-12">
-              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">What I do</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-600 leading-tight text-foreground mb-4">
-                Three areas. One approach.
-              </h2>
-              <p className="text-slate-700 text-lg">
-                Each engagement is scoped, priced, and delivered with a clear handover. No open-ended retainers.
-              </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {tracks.map((item) => (
-                <Link
-                  key={item.title}
-                  to={item.link}
-                  className="p-8 rounded-lg border border-[#E8E4DF] bg-white hover:shadow-md transition-shadow group block"
-                >
-                  <h3 className="font-serif text-2xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-700 text-sm leading-relaxed">{item.description}</p>
-                  <p className="mt-4 text-sm font-medium text-accent">
-                    Learn more →
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Ways to work with me */}
         <section className="bg-[#F5F3F0] py-20">
           <div className="max-w-6xl mx-auto px-8">
@@ -214,6 +182,38 @@ const Index = () => {
                   Learn more about HubSpot Sprints →
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Service tracks */}
+        <section className="bg-[#FAF8F5] py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">What I do</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-600 leading-tight text-foreground mb-4">
+                Three areas. One approach.
+              </h2>
+              <p className="text-slate-700 text-lg">
+                Each engagement is scoped, priced, and delivered with a clear handover. No open-ended retainers.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {tracks.map((item) => (
+                <Link
+                  key={item.title}
+                  to={item.link}
+                  className="p-8 rounded-lg border border-[#E8E4DF] bg-white hover:shadow-md transition-shadow group block"
+                >
+                  <h3 className="font-serif text-2xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-700 text-sm leading-relaxed">{item.description}</p>
+                  <p className="mt-4 text-sm font-medium text-accent">
+                    Learn more →
+                  </p>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
