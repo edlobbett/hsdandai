@@ -81,14 +81,14 @@ const Index = () => {
         <section className="bg-white py-32">
           <div className="max-w-6xl mx-auto px-8">
             <div className="animate-fade-in-up">
-              <p className="text-xs font-semibold text-accent mb-3 text-center max-w-3xl mx-auto leading-relaxed">
-                When data, process and stack flow together, RevOps becomes a feedback loop that guides and sharpens strategy. I design and build those systems.
-              </p>
-              <div className="max-w-5xl mx-auto space-y-6 px-4">
-                <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl font-600 leading-tight text-foreground text-balance">
+              <div className="max-w-5xl mx-auto space-y-6">
+                <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl font-600 leading-tight text-foreground text-balance text-center">
                   RevOps | CRM | Digital Transformation
                 </h1>
-                <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
+                <p className="text-base md:text-lg text-accent leading-relaxed max-w-3xl mx-auto text-center">
+                  When data, process and stack flow together, RevOps becomes a feedback loop that guides and sharpens strategy. I design and build those systems.
+                </p>
+                <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto text-center">
                   A decade as agency founder and CCO — GTM partner to start-ups and scale-ups, and before that running global campaigns client-side. The work is the same either way: revenue systems that grow the business and sharpen the strategy. That's more achievable now than it's ever been — and more dependent on getting the architecture right.
                 </p>
               </div>
