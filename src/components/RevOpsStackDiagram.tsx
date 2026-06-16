@@ -36,7 +36,7 @@ const clusters: ClusterType[] = [
     fill: "#14A3A3",
     lightFill: "#E6F5F5",
     x: 550,
-    y: 100,
+    y: 120,
   },
   {
     id: "data-signals",
@@ -46,7 +46,7 @@ const clusters: ClusterType[] = [
     fill: "#7C3AED",
     lightFill: "#F3EEFF",
     x: 160,
-    y: 300,
+    y: 320,
   },
   {
     id: "execution",
@@ -56,7 +56,7 @@ const clusters: ClusterType[] = [
     fill: "#E8604C",
     lightFill: "#FDF0EE",
     x: 940,
-    y: 300,
+    y: 320,
   },
   {
     id: "infrastructure",
@@ -66,7 +66,7 @@ const clusters: ClusterType[] = [
     fill: "#6B7280",
     lightFill: "#F3F4F6",
     x: 550,
-    y: 490,
+    y: 500,
   },
 ];
 
@@ -108,11 +108,6 @@ const internalArrows: ArrowType[] = [
   { from: "reporting", to: "icp", color: "#14A3A3" },
 ];
 
-// Ad channels <-> CRM bidirectional
-const biDirectionalArrows: ArrowType[] = [
-  { from: "ad-channels", to: "crm", color: "#E8604C" },
-  { from: "crm", to: "ad-channels", color: "#E8604C" },
-];
 
 function getClusterCenter(id: string) {
   const c = clusters.find((c) => c.id === id)!;
@@ -283,18 +278,16 @@ export default function RevOpsStackDiagram() {
         style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
       >
         {/* Legend */}
-        <g transform="translate(20, 20)">
-          {/* Essential indicator */}
+        <g transform="translate(20, 15)">
+          {/* Row 1: Essential / Optional */}
           <rect x="0" y="0" width="12" height="12" rx="2" fill="#333" />
           <text x="18" y="10" fontSize="12" fill="#666">Essential</text>
+          <rect x="90" y="0" width="12" height="12" rx="2" fill="none" stroke="#999" strokeWidth="1.5" strokeDasharray="3,2" />
+          <text x="108" y="10" fontSize="12" fill="#666">Optional</text>
 
-          {/* Optional indicator */}
-          <rect x="80" y="0" width="12" height="12" rx="2" fill="none" stroke="#999" strokeWidth="1.5" strokeDasharray="3,2" />
-          <text x="98" y="10" fontSize="12" fill="#666">Optional</text>
-
-          {/* Cluster indicators */}
+          {/* Row 2: Cluster colours */}
           {clusters.map((c, i) => (
-            <g key={c.id} transform={`translate(${200 + i * 130}, 0)`}>
+            <g key={c.id} transform={`translate(${i * 140}, 22)`}>
               <circle cx="6" cy="6" r="5" fill={c.color} />
               <text x="16" y="10" fontSize="12" fill="#666">{c.label}</text>
             </g>
@@ -343,37 +336,45 @@ export default function RevOpsStackDiagram() {
                 d={path}
                 fill="none"
                 stroke={a.color}
-                strokeWidth={isInfra ? 1.5 : 2}
+                strokeWidth={2}
                 strokeDasharray={a.dashed || isInfra ? "6,4" : "none"}
-                opacity={0.6}
+                opacity={isInfra ? 0.8 : 0.6}
                 markerEnd={
                   a.dashed || isInfra
                     ? `url(#arrowhead-${a.color.replace("#", "")}-dashed)`
                     : `url(#arrowhead-${a.color.replace("#", "")})`
                 }
               />
-              {a.label && (
-                <text
-                  x={
-                    a.from === "data-signals" && a.to === "strategy"
-                      ? (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2 - 30
-                      : a.from === "strategy" && a.to === "data-signals"
-                        ? (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2 + 30
-                        : a.from === "execution" && a.to === "strategy"
-                          ? (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2 + 30
-                          : (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2
-                  }
-                  y={
-                    (getClusterCenter(a.from).y + getClusterCenter(a.to).y) / 2 -
-                    20
-                  }
-                  textAnchor="middle"
-                  fontSize={10}
-                  fill="#888"
-                >
-                  {a.label}
-                </text>
-              )}
+              {a.label && (() => {
+                const fx = getClusterCenter(a.from).x;
+                const fy = getClusterCenter(a.from).y;
+                const tx = getClusterCenter(a.to).x;
+                const ty = getClusterCenter(a.to).y;
+                const mx = (fx + tx) / 2;
+                const my = (fy + ty) / 2;
+
+                // Per-arrow offsets to prevent overlap
+                const offsets: Record<string, {dx: number, dy: number}> = {
+                  "data-signals-strategy": { dx: -80, dy: -10 },
+                  "strategy-data-signals": { dx: 80, dy: 10 },
+                  "data-signals-execution": { dx: 0, dy: -20 },
+                  "execution-strategy": { dx: 80, dy: -10 },
+                };
+                const key = `${a.from}-${a.to}`;
+                const off = offsets[key] || { dx: 0, dy: -15 };
+
+                return (
+                  <text
+                    x={mx + off.dx}
+                    y={my + off.dy}
+                    textAnchor="middle"
+                    fontSize={10}
+                    fill="#888"
+                  >
+                    {a.label}
+                  </text>
+                );
+              })()}
             </g>
           );
         })}
@@ -391,24 +392,6 @@ export default function RevOpsStackDiagram() {
             />
           </g>
         ))}
-
-        {/* Ad channels <-> CRM bidirectional */}
-        {biDirectionalArrows.map((a, i) => {
-          const path = getArrowPath(a.from, a.to, i === 0);
-          return (
-            <g key={`bi-${a.from}-${a.to}-${i}`}>
-              <path
-                d={path}
-                fill="none"
-                stroke={a.color}
-                strokeWidth={1.5}
-                strokeDasharray="4,3"
-                opacity={0.5}
-                markerEnd={`url(#arrowhead-${a.color.replace("#", "")})`}
-              />
-            </g>
-          );
-        })}
 
         {/* Nodes */}
         {nodes.map((node) => {
