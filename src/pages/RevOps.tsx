@@ -18,7 +18,7 @@ const RevOps = () => {
               <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">
                 Revenue Operations
               </p>
-              # RevOps is a new name for something good agencies have always done.
+              RevOps is a new name for something good agencies have always done.
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
                 <p>
                   CRM as the operational core. Targeting and enrichment feeding the top of the funnel. Lifecycle automation and personalised experience closing the loop. Running a HubSpot partner agency meant building integrated digital stacks before anyone called it Revenue Operations — back when it required a dev team to connect the pieces and significant offline work to get the data right.
@@ -42,7 +42,7 @@ const RevOps = () => {
         {/* How I work */}
         <section className="py-16 md:py-20 border-t border-border">
           <div className="container max-w-3xl">
-            ## How I work
+            How I work
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
               <p>
                 The stack is a means to an end. What I care about is lead quality, alignment between what marketing promises and what sales closes, and outcomes that show up in revenue — not in a dashboard that nobody looks at.
@@ -58,7 +58,7 @@ const RevOps = () => {
         <section className="py-16 md:py-20 bg-muted/40">
           <div className="container">
             <div className="max-w-3xl mb-10">
-              ## The stack
+              The stack
               <p className="text-lg text-muted-foreground leading-relaxed font-medium mb-3">
                 Every business already has a stack. The question is whether it's deliberate or accidental.
               </p>
@@ -66,7 +66,9 @@ const RevOps = () => {
                 CRM, email, phone, web, messaging, finance — these have never all lived in one place, and they never will. The composable stack isn't a new idea; it's just what commercial technology looks like. What's changed is how easily the pieces connect, and what you can do with them when they do.
               </p>
             </div>
-            <RevOpsStackDiagram />
+            <div className="max-w-2xl mx-auto">
+              <RevOpsStackDiagram />
+            </div>
             <p className="text-sm text-muted-foreground mt-6 max-w-3xl">
               The AI layer sits in infrastructure because that's where it belongs — it works when the foundations are right.{" "}
               <Link to="/digital-ai" className="underline underline-offset-4 hover:text-foreground transition-colors">
@@ -79,7 +81,7 @@ const RevOps = () => {
         {/* What I've built */}
         <section className="py-16 md:py-20 border-t border-border">
           <div className="container max-w-3xl">
-            ## What I've built
+            What I've built
             <div className="space-y-8">
               {[
                 {
@@ -115,7 +117,7 @@ const RevOps = () => {
         {/* Ways to work with me */}
         <section className="py-16 md:py-20 bg-muted/40 border-t border-border">
           <div className="container max-w-3xl">
-            ## Ways to work with me
+            Ways to work with me
             <div className="space-y-8">
               {[
                 {
@@ -149,7 +151,7 @@ const RevOps = () => {
         {/* CTA */}
         <section className="py-20 md:py-24 bg-surface-dark text-surface-dark-foreground">
           <div className="container text-center max-w-2xl">
-            ## Let's talk about what you need.
+            Let's talk about what you need.
             <p className="text-lg opacity-70 mb-8">
               A short call to understand your setup. You'll get clear thoughts on what needs building and how I'd approach it. No pitch deck, no pressure.
             </p>
