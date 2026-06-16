@@ -81,13 +81,13 @@ const Index = () => {
         <section className="bg-white py-32">
           <div className="max-w-6xl mx-auto px-8">
             <div className="animate-fade-in-up">
-              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3 text-center">
-                Revenue operations
+              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3 text-center max-w-3xl mx-auto leading-relaxed">
+                When data, process and stack flow together, RevOps becomes a feedback loop that guides and sharpens strategy. I design and build those systems.
               </p>
               <div className="max-w-5xl mx-auto space-y-6">
-                <p className="font-serif text-3xl md:text-4xl lg:text-5xl font-600 leading-tight text-foreground text-balance">
-                  When data, process and stack flow together, RevOps becomes a feedback loop that guides and sharpens strategy. I design and build those systems.
-                </p>
+                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-600 leading-tight text-foreground text-balance">
+                  RevOps | CRM | Digital Transformation
+                </h1>
                 <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
                   A decade as agency founder and CCO — GTM partner to start-ups and scale-ups, and before that running global campaigns client-side. The work is the same either way: revenue systems that grow the business and sharpen the strategy. That's more achievable now than it's ever been — and more dependent on getting the architecture right.
                 </p>
@@ -126,7 +126,7 @@ const Index = () => {
         <section className="bg-white py-20">
           <div className="max-w-6xl mx-auto px-8">
             <div className="max-w-4xl">
-              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">How I work</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-600 leading-tight text-foreground mb-6">Ed Lobbett</h2>
               <div className="space-y-5 text-slate-700 text-lg leading-relaxed">
                 <p>
                   CCO and agency founder who's spent years working directly with dev teams to connect campaigns to technology and data. That combination — commercial leadership and technical architecture — is what RevOps actually requires.
@@ -180,32 +180,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Who this is for */}
-        <section className="bg-white py-20">
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="max-w-2xl mb-12">
-              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">Who this is for</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-600 leading-tight text-foreground mb-4">
-                Teams that need systems to work — not a team to manage them
-              </h2>
-              <p className="text-slate-700 text-lg">
-                You need someone senior to come in, fix what's broken, build what's missing, and hand it back in a state your team can manage.
-              </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {personas.map((item) => (
-                <div
-                  key={item.title}
-                  className="p-6 rounded-lg border border-border bg-[#FAF8F5]"
-                >
-                  <h3 className="font-serif text-lg font-600 text-foreground mb-2">{item.title}</h3>
-                  <p className="text-slate-700 text-sm leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Ways to work with me */}
         <section className="bg-[#F5F3F0] py-20">
           <div className="max-w-6xl mx-auto px-8">
@@ -220,13 +194,13 @@ const Index = () => {
             </div>
             <div className="grid gap-6 md:grid-cols-3">
               <div className="p-8 rounded-lg border border-[#E8E4DF] bg-white hover:shadow-md transition-shadow">
-                <h3 className="font-serif text-xl font-semibold text-foreground mb-3 italic">Revenue operations</h3>
+                <h3 className="font-serif text-xl font-semibold text-foreground mb-3 italic">Employed / Retained</h3>
                 <p className="text-slate-700 text-sm leading-relaxed mb-4">
-                  Project, retained or fully employed. GTM strategy through to technical build — integration architecture, workflow automation, data design, CRM implementation. Build and run a full RevOps function, or come in on a specific part of it. As light or as embedded as the engagement requires.
+                  Project, retained or fully employed. GTM strategy through to technical build — integration architecture, workflow automation, data design, CRM implementation. Build and run a full RevOps function, or come in on a specific part of it.
                 </p>
               </div>
               <div className="p-8 rounded-lg border border-[#E8E4DF] bg-white hover:shadow-md transition-shadow">
-                <h3 className="font-serif text-xl font-semibold text-foreground mb-3 italic">Contract</h3>
+                <h3 className="font-serif text-xl font-semibold text-foreground mb-3 italic">Contract / Day Rate</h3>
                 <p className="text-slate-700 text-sm leading-relaxed mb-4">
                   Day-rate or fixed-term. Interim Head of RevOps, GTM Engineer, CRM Lead. Available for embedded roles where the work needs someone who can operate commercially and build technically.
                 </p>
