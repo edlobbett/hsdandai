@@ -81,11 +81,11 @@ const Index = () => {
         <section className="bg-white py-32">
           <div className="max-w-6xl mx-auto px-8">
             <div className="animate-fade-in-up">
-              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3 text-center max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xs font-semibold text-accent mb-3 text-center max-w-3xl mx-auto leading-relaxed">
                 When data, process and stack flow together, RevOps becomes a feedback loop that guides and sharpens strategy. I design and build those systems.
               </p>
-              <div className="max-w-5xl mx-auto space-y-6">
-                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-600 leading-tight text-foreground text-balance">
+              <div className="max-w-5xl mx-auto space-y-6 px-4">
+                <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl font-600 leading-tight text-foreground text-balance">
                   RevOps | CRM | Digital Transformation
                 </h1>
                 <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
