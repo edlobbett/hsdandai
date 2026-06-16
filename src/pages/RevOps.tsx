@@ -18,7 +18,9 @@ const RevOps = () => {
               <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">
                 Revenue Operations
               </p>
-              RevOps is a new name for something good agencies have always done.
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-600 leading-tight text-foreground mb-8 text-balance">
+                RevOps is a new name for something good agencies have always done.
+              </h1>
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
                 <p>
                   CRM as the operational core. Targeting and enrichment feeding the top of the funnel. Lifecycle automation and personalised experience closing the loop. Running a HubSpot partner agency meant building integrated digital stacks before anyone called it Revenue Operations — back when it required a dev team to connect the pieces and significant offline work to get the data right.
@@ -42,7 +44,9 @@ const RevOps = () => {
         {/* How I work */}
         <section className="py-16 md:py-20 border-t border-border">
           <div className="container max-w-3xl">
-            How I work
+            <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-6">
+                How I work
+            </h2>
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
               <p>
                 The stack is a means to an end. What I care about is lead quality, alignment between what marketing promises and what sales closes, and outcomes that show up in revenue — not in a dashboard that nobody looks at.
@@ -58,7 +62,9 @@ const RevOps = () => {
         <section className="py-16 md:py-20 bg-muted/40">
           <div className="container">
             <div className="max-w-3xl mb-10">
-              The stack
+              <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-4">
+                The stack
+              </h2>
               <p className="text-lg text-muted-foreground leading-relaxed font-medium mb-3">
                 Every business already has a stack. The question is whether it's deliberate or accidental.
               </p>
@@ -81,7 +87,9 @@ const RevOps = () => {
         {/* What I've built */}
         <section className="py-16 md:py-20 border-t border-border">
           <div className="container max-w-3xl">
-            What I've built
+            <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-8">
+                What I've built
+            </h2>
             <div className="space-y-8">
               {[
                 {
@@ -115,42 +123,46 @@ const RevOps = () => {
         </section>
 
         {/* Ways to work with me */}
-        <section className="py-16 md:py-20 bg-muted/40 border-t border-border">
-          <div className="container max-w-3xl">
-            Ways to work with me
-            <div className="space-y-8">
-              {[
-                {
-                  label: "Revenue operations",
-                  body: "Project, retained or fully employed. GTM strategy through to technical build — integration architecture, workflow automation, data design, CRM implementation. Build and run a full RevOps function, or come in on a specific part of it. As light or as embedded as the engagement requires.",
-                },
-                {
-                  label: "Contract",
-                  body: "Day-rate or fixed-term. Interim Head of RevOps, GTM Engineer, CRM Lead. Available for embedded roles where the work needs someone who can operate commercially and build technically.",
-                },
-                {
-                  label: "HubSpot Sprints",
-                  body: "Fixed-price, fixed-scope HubSpot implementations. A specific problem, solved in days not months, with a clean handover.",
-                  link: { to: "/hubspot-sprints", label: "See HubSpot Sprints →" },
-                },
-              ].map((item) => (
-                <div key={item.label} className="border-l-2 border-accent/30 pl-5">
-                  <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-1">{item.label}</p>
-                  <p className="text-muted-foreground leading-relaxed">{item.body}</p>
-                  {item.link && (
-                    <Link to={item.link.to} className="text-sm text-accent hover:underline mt-2 inline-block">
-                      {item.link.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
+        <section className="bg-[#F5F3F0] py-20">
+          <div className="max-w-6xl mx-auto px-8">
+            <div className="max-w-2xl mb-12">
+              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">Ways to work with me</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-600 leading-tight text-foreground mb-4">
+                Three ways to work together
+              </h2>
+              <p className="text-slate-700 text-lg">
+                As light or as embedded as the engagement requires.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              <div className="p-8 rounded-lg border border-[#E8E4DF] bg-white hover:shadow-md transition-shadow">
+                <h3 className="font-serif text-xl font-semibold text-foreground mb-3 italic">Employed / Retained</h3>
+                <p className="text-slate-700 text-sm leading-relaxed mb-4">
+                  Project, retained or fully employed. GTM strategy through to technical build — integration architecture, workflow automation, data design, CRM implementation. Build and run a full RevOps function, or come in on a specific part of it.
+                </p>
+              </div>
+              <div className="p-8 rounded-lg border border-[#E8E4DF] bg-white hover:shadow-md transition-shadow">
+                <h3 className="font-serif text-xl font-semibold text-foreground mb-3 italic">Contract / Day Rate</h3>
+                <p className="text-slate-700 text-sm leading-relaxed mb-4">
+                  Day-rate or fixed-term. Interim Head of RevOps, GTM Engineer, CRM Lead. Available for embedded roles where the work needs someone who can operate commercially and build technically.
+                </p>
+              </div>
+              <div className="p-8 rounded-lg border border-[#E8E4DF] bg-white hover:shadow-md transition-shadow">
+                <h3 className="font-serif text-xl font-semibold text-foreground mb-3 italic">HubSpot Sprints</h3>
+                <p className="text-slate-700 text-sm leading-relaxed mb-4">
+                  Fixed-price, fixed-scope HubSpot implementations. A specific problem, solved in days not months, with a clean handover.
+                </p>
+                <Link to="/hubspot-sprints" className="mt-4 text-sm font-medium text-accent hover:underline">
+                  See HubSpot Sprints →
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
         {/* CTA */}
         <section className="py-20 md:py-24 bg-surface-dark text-surface-dark-foreground">
-          <div className="container text-center max-w-2xl">
+          <div className="container max-w-2xl">
             Let's talk about what you need.
             <p className="text-lg opacity-70 mb-8">
               A short call to understand your setup. You'll get clear thoughts on what needs building and how I'd approach it. No pitch deck, no pressure.
