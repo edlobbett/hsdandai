@@ -35,8 +35,8 @@ const clusters: ClusterType[] = [
     lightColor: "#14A3A320",
     fill: "#14A3A3",
     lightFill: "#E6F5F5",
-    x: 450,
-    y: 80,
+    x: 550,
+    y: 100,
   },
   {
     id: "data-signals",
@@ -45,8 +45,8 @@ const clusters: ClusterType[] = [
     lightColor: "#7C3AED20",
     fill: "#7C3AED",
     lightFill: "#F3EEFF",
-    x: 120,
-    y: 240,
+    x: 160,
+    y: 300,
   },
   {
     id: "execution",
@@ -55,8 +55,8 @@ const clusters: ClusterType[] = [
     lightColor: "#E8604C20",
     fill: "#E8604C",
     lightFill: "#FDF0EE",
-    x: 780,
-    y: 240,
+    x: 940,
+    y: 300,
   },
   {
     id: "infrastructure",
@@ -65,8 +65,8 @@ const clusters: ClusterType[] = [
     lightColor: "#6B728020",
     fill: "#6B7280",
     lightFill: "#F3F4F6",
-    x: 450,
-    y: 420,
+    x: 550,
+    y: 490,
   },
 ];
 
@@ -156,11 +156,11 @@ function getNodePosition(node: NodeType): { x: number; y: number } {
     const isEssential = node.essential;
     if (isEssential) {
       const idx = essentialNodes.findIndex((n) => n.id === node.id);
-      return { x: baseX - 60 + idx * 120, y: baseY - 30 };
+      return { x: baseX - 120 + idx * 120, y: baseY - 30 };
     } else {
       // Find which optional node this is
       const idx = optionalNodes.findIndex((n) => n.id === node.id);
-      return { x: baseX - 60 + idx * 200, y: baseY + 70 };
+      return { x: baseX - 100 + idx * 200, y: baseY + 80 };
     }
   }
 
@@ -178,10 +178,10 @@ function getNodePosition(node: NodeType): { x: number; y: number } {
 export default function RevOpsStackDiagram() {
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
 
-  const clusterWidth = 320;
-  const clusterHeight = 180;
-  const svgWidth = 960;
-  const svgHeight = 540;
+  const clusterWidth = 360;
+  const clusterHeight = 200;
+  const svgWidth = 1100;
+  const svgHeight = 600;
 
   const getClusterRect = (c: ClusterType) => ({
     x: c.x - clusterWidth / 2,
@@ -286,17 +286,17 @@ export default function RevOpsStackDiagram() {
         <g transform="translate(20, 20)">
           {/* Essential indicator */}
           <rect x="0" y="0" width="12" height="12" rx="2" fill="#333" />
-          <text x="18" y="10" fontSize="11" fill="#666">Essential</text>
+          <text x="18" y="10" fontSize="12" fill="#666">Essential</text>
 
           {/* Optional indicator */}
           <rect x="80" y="0" width="12" height="12" rx="2" fill="none" stroke="#999" strokeWidth="1.5" strokeDasharray="3,2" />
-          <text x="98" y="10" fontSize="11" fill="#666">Optional</text>
+          <text x="98" y="10" fontSize="12" fill="#666">Optional</text>
 
           {/* Cluster indicators */}
           {clusters.map((c, i) => (
-            <g key={c.id} transform={`translate(${170 + i * 110}, 0)`}>
+            <g key={c.id} transform={`translate(${200 + i * 130}, 0)`}>
               <circle cx="6" cy="6" r="5" fill={c.color} />
-              <text x="16" y="10" fontSize="11" fill="#666">{c.label}</text>
+              <text x="16" y="10" fontSize="12" fill="#666">{c.label}</text>
             </g>
           ))}
         </g>
@@ -355,11 +355,17 @@ export default function RevOpsStackDiagram() {
               {a.label && (
                 <text
                   x={
-                    (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2
+                    a.from === "data-signals" && a.to === "strategy"
+                      ? (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2 - 30
+                      : a.from === "strategy" && a.to === "data-signals"
+                        ? (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2 + 30
+                        : a.from === "execution" && a.to === "strategy"
+                          ? (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2 + 30
+                          : (getClusterCenter(a.from).x + getClusterCenter(a.to).x) / 2
                   }
                   y={
                     (getClusterCenter(a.from).y + getClusterCenter(a.to).y) / 2 -
-                    10
+                    20
                   }
                   textAnchor="middle"
                   fontSize={10}
@@ -424,7 +430,7 @@ export default function RevOpsStackDiagram() {
                   width={110}
                   height={40}
                   rx={6}
-                  fill={cluster.lightColor}
+                  fill={cluster.lightFill}
                   stroke={cluster.color}
                   strokeWidth={1.5}
                   strokeDasharray="5,3"
