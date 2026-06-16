@@ -1,554 +1,103 @@
-import { useState } from "react";
-
-type NodeType = {
-  id: string;
-  label: string;
-  subtitle: string;
-  cluster: string;
-  essential: boolean;
-};
-
-type ClusterType = {
-  id: string;
-  label: string;
-  color: string;
-  lightColor: string;
-  fill: string;
-  lightFill: string;
-  x: number;
-  y: number;
-};
-
-type ArrowType = {
-  from: string;
-  to: string;
-  color: string;
-  dashed?: boolean;
-  label?: string;
-};
-
-const clusters: ClusterType[] = [
-  {
-    id: "strategy",
-    label: "Strategy",
-    color: "#14A3A3",
-    lightColor: "#14A3A320",
-    fill: "#14A3A3",
-    lightFill: "#E6F5F5",
-    x: 550,
-    y: 120,
-  },
-  {
-    id: "data-signals",
-    label: "Data & signals",
-    color: "#7C3AED",
-    lightColor: "#7C3AED20",
-    fill: "#7C3AED",
-    lightFill: "#F3EEFF",
-    x: 160,
-    y: 320,
-  },
-  {
-    id: "execution",
-    label: "Execution",
-    color: "#E8604C",
-    lightColor: "#E8604C20",
-    fill: "#E8604C",
-    lightFill: "#FDF0EE",
-    x: 940,
-    y: 320,
-  },
-  {
-    id: "infrastructure",
-    label: "Infrastructure",
-    color: "#6B7280",
-    lightColor: "#6B728020",
-    fill: "#6B7280",
-    lightFill: "#F3F4F6",
-    x: 550,
-    y: 500,
-  },
-];
-
-const nodes: NodeType[] = [
-  // Strategy
-  { id: "icp", label: "ICP definition", subtitle: "Segmentation, TAM", cluster: "strategy", essential: true },
-  { id: "reporting", label: "Reporting", subtitle: "Pipeline, velocity", cluster: "strategy", essential: true },
-  // Data & signals
-  { id: "apollo", label: "Apollo", subtitle: "Contacts, companies", cluster: "data-signals", essential: true },
-  { id: "clay", label: "Clay", subtitle: "Transform, enrich", cluster: "data-signals", essential: true },
-  { id: "scrapers", label: "AI scrapers", subtitle: "Jobs, intent, signals", cluster: "data-signals", essential: true },
-  { id: "intent", label: "Intent data", subtitle: "Buying signals", cluster: "data-signals", essential: true },
-  { id: "cdp", label: "CDP / Braze / Segment", subtitle: "Optional", cluster: "data-signals", essential: false },
-  // Execution
-  { id: "crm", label: "CRM", subtitle: "Pipeline, lifecycle", cluster: "execution", essential: true },
-  { id: "outreach", label: "Outreach", subtitle: "Sequences, email", cluster: "execution", essential: true },
-  { id: "linkedin", label: "LinkedIn", subtitle: "Social outreach", cluster: "execution", essential: true },
-  { id: "ad-channels", label: "Ad channels", subtitle: "Optional", cluster: "execution", essential: false },
-  { id: "forecasting", label: "Forecasting", subtitle: "Gong, Clari", cluster: "execution", essential: false },
-  // Infrastructure
-  { id: "ipaas", label: "iPaaS", subtitle: "Make, Zapier, APIs", cluster: "infrastructure", essential: true },
-  { id: "mcp", label: "MCP / AI agents", subtitle: "Agentic layer", cluster: "infrastructure", essential: false },
-];
-
-// Arrows between clusters - defined as source cluster -> target cluster
-// We'll draw these as SVG paths between cluster containers
-const clusterArrows: ArrowType[] = [
-  { from: "data-signals", to: "strategy", color: "#7C3AED", label: "Informs ICP" },
-  { from: "strategy", to: "data-signals", color: "#14A3A3", label: "Targets signal collection" },
-  { from: "data-signals", to: "execution", color: "#7C3AED", label: "Feeds CRM and outreach" },
-  { from: "execution", to: "strategy", color: "#E8604C", label: "Pipeline feeds reporting" },
-  { from: "infrastructure", to: "strategy", color: "#6B7280", dashed: true },
-  { from: "infrastructure", to: "data-signals", color: "#6B7280", dashed: true },
-  { from: "infrastructure", to: "execution", color: "#6B7280", dashed: true },
-];
-
-// Internal cluster arrows (within a cluster)
-const internalArrows: ArrowType[] = [
-  { from: "reporting", to: "icp", color: "#14A3A3" },
-];
-
-
-function getClusterCenter(id: string) {
-  const c = clusters.find((c) => c.id === id)!;
-  return { x: c.x, y: c.y };
-}
-
-// Node positions within each cluster (relative to cluster center)
-// Layout: Strategy top-centre, Data left, Execution right, Infrastructure bottom-centre
-function getNodePosition(node: NodeType): { x: number; y: number } {
-  const cluster = clusters.find((c) => c.id === node.cluster)!;
-  const baseX = cluster.x;
-  const baseY = cluster.y;
-
-  // Within each cluster, lay out nodes
-  const clusterNodes = nodes.filter((n) => n.cluster === node.cluster);
-  const nodeIndex = clusterNodes.findIndex((n) => n.id === node.id);
-  const essentialNodes = clusterNodes.filter((n) => n.essential);
-  const optionalNodes = clusterNodes.filter((n) => !n.essential);
-
-  if (node.cluster === "strategy") {
-    // 2 nodes side by side
-    const offsets = [ { x: -100, y: 0 }, { x: 100, y: 0 } ];
-    return { x: baseX + offsets[nodeIndex].x, y: baseY + offsets[nodeIndex].y };
-  }
-
-  if (node.cluster === "data-signals") {
-    // 5 nodes in two rows
-    const isEssential = node.essential;
-    if (isEssential) {
-      const idx = essentialNodes.findIndex((n) => n.id === node.id);
-      const row = Math.floor(idx / 2);
-      const col = idx % 2;
-      return { x: baseX - 60 + col * 120, y: baseY - 45 + row * 50 };
-    } else {
-      return { x: baseX - 60, y: baseY + 75 };
-    }
-  }
-
-  if (node.cluster === "execution") {
-    // 5 nodes in two rows
-    const isEssential = node.essential;
-    if (isEssential) {
-      const idx = essentialNodes.findIndex((n) => n.id === node.id);
-      return { x: baseX - 120 + idx * 120, y: baseY - 30 };
-    } else {
-      // Find which optional node this is
-      const idx = optionalNodes.findIndex((n) => n.id === node.id);
-      return { x: baseX - 100 + idx * 200, y: baseY + 80 };
-    }
-  }
-
-  if (node.cluster === "infrastructure") {
-    if (node.essential) {
-      return { x: baseX - 80, y: baseY };
-    } else {
-      return { x: baseX + 80, y: baseY };
-    }
-  }
-
-  return { x: baseX, y: baseY };
-}
-
 export default function RevOpsStackDiagram() {
-  const [selectedNode, setSelectedNode] = useState<string | null>(null);
-
-  const clusterWidth = 360;
-  const clusterHeight = 200;
-  const svgWidth = 1100;
-  const svgHeight = 600;
-
-  const getClusterRect = (c: ClusterType) => ({
-    x: c.x - clusterWidth / 2,
-    y: c.y - 80,
-    w: clusterWidth,
-    h: clusterHeight,
-  });
-
-  // Arrow routing helper
-  const getArrowPath = (fromId: string, toId: string, needSeparation?: boolean): string => {
-    const fromNode = nodes.find((n) => n.id === fromId);
-    const toNode = nodes.find((n) => n.id === toId);
-
-    if (fromNode && toNode) {
-      // Internal arrow between nodes within same cluster
-      const fromPos = getNodePosition(fromNode);
-      const toPos = getNodePosition(toNode);
-      const dx = toPos.x - fromPos.x;
-      const dy = toPos.y - fromPos.y;
-      const angle = Math.atan2(dy, dx);
-      const offsetX = 45 * Math.cos(angle);
-      const offsetY = 45 * Math.sin(angle);
-      if (needSeparation) {
-        // For bidirectional, separate the two arrows vertically
-        return `M${fromPos.x + offsetX},${fromPos.y + offsetY - 8} L${toPos.x - offsetX},${toPos.y - offsetY - 8}`;
-      }
-      return `M${fromPos.x + offsetX},${fromPos.y + offsetY} L${toPos.x - offsetX},${toPos.y - offsetY}`;
-    }
-
-    // Cluster-to-cluster arrow
-    const fromCluster = clusters.find((c) => c.id === fromId)!;
-    const toCluster = clusters.find((c) => c.id === toId)!;
-
-    const fromRect = getClusterRect(fromCluster);
-    const toRect = getClusterRect(toCluster);
-
-    // Calculate intersection point from center of fromCluster rect to center of toCluster rect
-    const fromCx = fromRect.x + fromRect.w / 2;
-    const fromCy = fromRect.y + fromRect.h / 2;
-    const toCx = toRect.x + toRect.w / 2;
-    const toCy = toRect.y + toRect.h / 2;
-
-    const dx = toCx - fromCx;
-    const dy = toCy - fromCy;
-
-    // Find the edge point of the fromCluster rect
-    const angle = Math.atan2(dy, dx);
-    let startX: number, startY: number;
-
-    // Horizontal distance to left/right edge
-    const hDist = fromRect.w / 2 / Math.abs(Math.cos(angle) || 0.01);
-    const vDist = fromRect.h / 2 / Math.abs(Math.sin(angle) || 0.01);
-
-    if (hDist < vDist) {
-      startX = fromCx + Math.sign(dx) * fromRect.w / 2;
-      startY = fromCy + Math.sign(dx) * (fromRect.w / 2) * Math.tan(angle);
-    } else {
-      startY = fromCy + Math.sign(dy) * fromRect.h / 2;
-      startX = fromCx + Math.sign(dy) * (fromRect.h / 2) / Math.tan(angle);
-    }
-
-    // Find end point at toCluster rect edge
-    let endX: number, endY: number;
-    const hDistTo = toRect.w / 2 / Math.abs(Math.cos(angle + Math.PI) || 0.01);
-    const vDistTo = toRect.h / 2 / Math.abs(Math.sin(angle + Math.PI) || 0.01);
-
-    if (hDistTo < vDistTo) {
-      endX = toCx + Math.sign(-dx) * toRect.w / 2;
-      endY = toCy + Math.sign(-dx) * (toRect.w / 2) * Math.tan(angle + Math.PI);
-    } else {
-      endY = toCy + Math.sign(-dy) * toRect.h / 2;
-      endX = toCx + Math.sign(-dy) * (toRect.h / 2) / Math.tan(angle + Math.PI);
-    }
-
-    return `M${startX},${startY} L${endX},${endY}`;
-  };
-
-  const getRoutePath = (fromId: string, toId: string) => {
-    // Route infrastructure arrows around the edges
-    if (fromId === "infrastructure") {
-      if (toId === "data-signals") {
-        return `M${clusters[3].x - 160},${clusters[3].y} Q${clusters[3].x - 220},${clusters[3].y - 60} ${clusters[1].x - 160},${clusters[1].y + 90}`;
-      }
-      if (toId === "execution") {
-        return `M${clusters[3].x + 160},${clusters[3].y} Q${clusters[3].x + 220},${clusters[3].y - 60} ${clusters[2].x + 160},${clusters[2].y + 90}`;
-      }
-      if (toId === "strategy") {
-        return `M${clusters[3].x},${clusters[3].y - 80} L${clusters[0].x},${clusters[0].y + 90}`;
-      }
-    }
-    return getArrowPath(fromId, toId);
-  };
-
   return (
-    <div className="w-full overflow-x-auto py-8">
-      <svg
-        viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-        className="w-full max-w-[960px] mx-auto"
-        style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
-      >
-        {/* Legend */}
-        <g transform="translate(20, 15)">
-          {/* Row 1: Essential / Optional */}
-          <rect x="0" y="0" width="12" height="12" rx="2" fill="#333" />
-          <text x="18" y="10" fontSize="12" fill="#666">Essential</text>
-          <rect x="90" y="0" width="12" height="12" rx="2" fill="none" stroke="#999" strokeWidth="1.5" strokeDasharray="3,2" />
-          <text x="108" y="10" fontSize="12" fill="#666">Optional</text>
-
-          {/* Row 2: Cluster colours */}
-          {clusters.map((c, i) => (
-            <g key={c.id} transform={`translate(${i * 140}, 22)`}>
-              <circle cx="6" cy="6" r="5" fill={c.color} />
-              <text x="16" y="10" fontSize="12" fill="#666">{c.label}</text>
-            </g>
-          ))}
-        </g>
-
-        {/* Cluster container rectangles */}
-        {clusters.map((c) => {
-          const r = getClusterRect(c);
-          return (
-            <g key={c.id}>
-              <rect
-                x={r.x}
-                y={r.y}
-                width={r.w}
-                height={r.h}
-                rx={12}
-                fill={c.lightFill}
-                stroke={c.color}
-                strokeWidth={1}
-                strokeDasharray="6,4"
-                opacity={0.7}
-              />
-              <text
-                x={r.x + r.w / 2}
-                y={r.y - 10}
-                textAnchor="middle"
-                fontSize={11}
-                fontWeight={600}
-                fill={c.color}
-                letterSpacing={1}
-              >
-                {c.label.toUpperCase()}
-              </text>
-            </g>
-          );
-        })}
-
-        {/* Cluster-to-cluster arrows */}
-        {clusterArrows.map((a) => {
-          const path = getRoutePath(a.from, a.to);
-          const isInfra = a.from === "infrastructure";
-          return (
-            <g key={`${a.from}-${a.to}`}>
-              <path
-                d={path}
-                fill="none"
-                stroke={a.color}
-                strokeWidth={2}
-                strokeDasharray={a.dashed || isInfra ? "6,4" : "none"}
-                opacity={isInfra ? 0.8 : 0.6}
-                markerEnd={
-                  a.dashed || isInfra
-                    ? `url(#arrowhead-${a.color.replace("#", "")}-dashed)`
-                    : `url(#arrowhead-${a.color.replace("#", "")})`
-                }
-              />
-              {a.label && (() => {
-                const fx = getClusterCenter(a.from).x;
-                const fy = getClusterCenter(a.from).y;
-                const tx = getClusterCenter(a.to).x;
-                const ty = getClusterCenter(a.to).y;
-                const mx = (fx + tx) / 2;
-                const my = (fy + ty) / 2;
-
-                // Per-arrow offsets to prevent overlap
-                const offsets: Record<string, {dx: number, dy: number}> = {
-                  "data-signals-strategy": { dx: -80, dy: -10 },
-                  "strategy-data-signals": { dx: 80, dy: 10 },
-                  "data-signals-execution": { dx: 0, dy: -20 },
-                  "execution-strategy": { dx: 80, dy: -10 },
-                };
-                const key = `${a.from}-${a.to}`;
-                const off = offsets[key] || { dx: 0, dy: -15 };
-
-                return (
-                  <text
-                    x={mx + off.dx}
-                    y={my + off.dy}
-                    textAnchor="middle"
-                    fontSize={10}
-                    fill="#888"
-                  >
-                    {a.label}
-                  </text>
-                );
-              })()}
-            </g>
-          );
-        })}
-
-        {/* Internal cluster arrows */}
-        {internalArrows.map((a) => (
-          <g key={`int-${a.from}-${a.to}`}>
-            <path
-              d={getArrowPath(a.from, a.to)}
-              fill="none"
-              stroke={a.color}
-              strokeWidth={1.5}
-              markerEnd={`url(#arrowhead-${a.color.replace("#", "")})`}
-              opacity={0.5}
-            />
-          </g>
-        ))}
-
-        {/* Nodes */}
-        {nodes.map((node) => {
-          const pos = getNodePosition(node);
-          const cluster = clusters.find((c) => c.id === node.cluster)!;
-          const isSelected = selectedNode === node.id;
-
-          return (
-            <g
-              key={node.id}
-              onClick={() => setSelectedNode(isSelected ? null : node.id)}
-              style={{ cursor: "pointer" }}
-            >
-              {/* Optional dashed border ring */}
-              {!node.essential && (
-                <rect
-                  x={pos.x - 55}
-                  y={pos.y - 20}
-                  width={110}
-                  height={40}
-                  rx={6}
-                  fill={cluster.lightFill}
-                  stroke={cluster.color}
-                  strokeWidth={1.5}
-                  strokeDasharray="5,3"
-                  opacity={isSelected ? 0.9 : 0.7}
-                />
-              )}
-              {/* Essential solid fill */}
-              {node.essential && (
-                <rect
-                  x={pos.x - 55}
-                  y={pos.y - 20}
-                  width={110}
-                  height={40}
-                  rx={6}
-                  fill={isSelected ? cluster.color : cluster.color + "CC"}
-                  stroke={cluster.color}
-                  strokeWidth={1.5}
-                  opacity={isSelected ? 1 : 0.85}
-                />
-              )}
-              {/* Label */}
-              <text
-                x={pos.x}
-                y={pos.y - 2}
-                textAnchor="middle"
-                fontSize={12}
-                fontWeight={600}
-                fill={node.essential ? "#fff" : cluster.color}
-              >
-                {node.label}
-              </text>
-              {/* Subtitle */}
-              <text
-                x={pos.x}
-                y={pos.y + 13}
-                textAnchor="middle"
-                fontSize={9}
-                fill={node.essential ? "rgba(255,255,255,0.7)" : "#999"}
-              >
-                {node.subtitle}
-              </text>
-            </g>
-          );
-        })}
-
-        {/* Arrowhead markers */}
+    <div className="w-full overflow-x-auto py-4">
+      <svg width="100%" viewBox="0 0 680 590" role="img">
+        <title>RevOps stack diagram</title>
+        <desc>Four clusters: Strategy at top, Data and signals left, Execution right, Infrastructure bottom.</desc>
         <defs>
-          {clusters.map((c) => (
-            <g key={c.id}>
-              <marker
-                id={`arrowhead-${c.color.replace("#", "")}`}
-                viewBox="0 0 10 7"
-                refX={10}
-                refY={3.5}
-                markerWidth={8}
-                markerHeight={6}
-                orient="auto"
-              >
-                <polygon points="0 0, 10 3.5, 0 7" fill={c.color} />
-              </marker>
-              <marker
-                id={`arrowhead-${c.color.replace("#", "")}-dashed`}
-                viewBox="0 0 10 7"
-                refX={10}
-                refY={3.5}
-                markerWidth={8}
-                markerHeight={6}
-                orient="auto"
-              >
-                <polygon points="0 0, 10 3.5, 0 7" fill={c.color} opacity={0.6} />
-              </marker>
-            </g>
-          ))}
-          <marker
-            id="arrowhead-6B7280"
-            viewBox="0 0 10 7"
-            refX={10}
-            refY={3.5}
-            markerWidth={8}
-            markerHeight={6}
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280" />
-          </marker>
-          <marker
-            id="arrowhead-6B7280-dashed"
-            viewBox="0 0 10 7"
-            refX={10}
-            refY={3.5}
-            markerWidth={8}
-            markerHeight={6}
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280" opacity={0.6} />
-          </marker>
-          <marker
-            id="arrowhead-E8604C"
-            viewBox="0 0 10 7"
-            refX={10}
-            refY={3.5}
-            markerWidth={8}
-            markerHeight={6}
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" fill="#E8604C" />
-          </marker>
-          <marker
-            id="arrowhead-14A3A3"
-            viewBox="0 0 10 7"
-            refX={10}
-            refY={3.5}
-            markerWidth={8}
-            markerHeight={6}
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" fill="#14A3A3" />
-          </marker>
-          <marker
-            id="arrowhead-7C3AED"
-            viewBox="0 0 10 7"
-            refX={10}
-            refY={3.5}
-            markerWidth={8}
-            markerHeight={6}
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" fill="#7C3AED" />
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </marker>
         </defs>
+
+        {/* Strategy cluster */}
+        <rect x="200" y="20" width="280" height="110" rx="12" fill="#1D9E75" fillOpacity="0.15" stroke="#1D9E75" strokeWidth="1.5"/>
+        <text x="340" y="38" textAnchor="middle" fontSize="11" fontWeight="600" fill="#0F6E56" letterSpacing="1">STRATEGY</text>
+        <rect x="214" y="48" width="120" height="48" rx="6" fill="#1D9E75" stroke="#1D9E75" strokeWidth="1.5"/>
+        <text x="274" y="68" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">ICP definition</text>
+        <text x="274" y="84" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Segmentation, TAM</text>
+        <rect x="346" y="48" width="120" height="48" rx="6" fill="#1D9E75" stroke="#1D9E75" strokeWidth="1.5"/>
+        <text x="406" y="68" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">Reporting</text>
+        <text x="406" y="84" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Pipeline, velocity</text>
+        <line x1="334" y1="72" x2="345" y2="72" stroke="#0F6E56" strokeWidth="0.5" markerEnd="url(#arrow)"/>
+
+        {/* Data & Signals cluster */}
+        <rect x="14" y="165" width="250" height="225" rx="12" fill="#7F77DD" fillOpacity="0.15" stroke="#7F77DD" strokeWidth="1.5"/>
+        <text x="139" y="183" textAnchor="middle" fontSize="11" fontWeight="600" fill="#534AB7" letterSpacing="1">DATA &amp; SIGNALS</text>
+        <rect x="26" y="193" width="108" height="46" rx="6" fill="#7F77DD" stroke="#7F77DD" strokeWidth="1.5"/>
+        <text x="80" y="211" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">Apollo</text>
+        <text x="80" y="226" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Contacts, cos.</text>
+        <rect x="144" y="193" width="108" height="46" rx="6" fill="#7F77DD" stroke="#7F77DD" strokeWidth="1.5"/>
+        <text x="198" y="211" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">Clay</text>
+        <text x="198" y="226" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Transform, enrich</text>
+        <rect x="26" y="249" width="108" height="46" rx="6" fill="#7F77DD" stroke="#7F77DD" strokeWidth="1.5"/>
+        <text x="80" y="267" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">AI scrapers</text>
+        <text x="80" y="282" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Jobs, intent</text>
+        <rect x="144" y="249" width="108" height="46" rx="6" fill="#7F77DD" stroke="#7F77DD" strokeWidth="1.5"/>
+        <text x="198" y="267" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">Intent data</text>
+        <text x="198" y="282" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Buying signals</text>
+        <rect x="46" y="308" width="168" height="40" rx="6" fill="#7F77DD" fillOpacity="0.1" stroke="#7F77DD" strokeWidth="1" strokeDasharray="5,3"/>
+        <text x="130" y="324" textAnchor="middle" fontSize="11" fontWeight="600" fill="#534AB7" dominantBaseline="central">CDP / Braze / Segment</text>
+        <text x="130" y="338" textAnchor="middle" fontSize="10" fill="#7C3AED" dominantBaseline="central">Optional</text>
+
+        {/* Execution cluster */}
+        <rect x="416" y="165" width="250" height="225" rx="12" fill="#D85A30" fillOpacity="0.15" stroke="#D85A30" strokeWidth="1.5"/>
+        <text x="541" y="183" textAnchor="middle" fontSize="11" fontWeight="600" fill="#993C1D" letterSpacing="1">EXECUTION</text>
+        <rect x="428" y="193" width="72" height="46" rx="6" fill="#D85A30" stroke="#D85A30" strokeWidth="1.5"/>
+        <text x="464" y="211" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">CRM</text>
+        <text x="464" y="226" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Pipeline</text>
+        <rect x="510" y="193" width="72" height="46" rx="6" fill="#D85A30" stroke="#D85A30" strokeWidth="1.5"/>
+        <text x="546" y="211" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">Outreach</text>
+        <text x="546" y="226" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Sequences</text>
+        <rect x="592" y="193" width="62" height="46" rx="6" fill="#D85A30" stroke="#D85A30" strokeWidth="1.5"/>
+        <text x="623" y="211" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">LinkedIn</text>
+        <text x="623" y="226" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Social</text>
+        <rect x="428" y="252" width="100" height="42" rx="6" fill="#D85A30" fillOpacity="0.1" stroke="#D85A30" strokeWidth="1" strokeDasharray="5,3"/>
+        <text x="478" y="269" textAnchor="middle" fontSize="11" fontWeight="600" fill="#993C1D" dominantBaseline="central">Ad channels</text>
+        <text x="478" y="283" textAnchor="middle" fontSize="10" fill="#993C1D" dominantBaseline="central">Optional</text>
+        <rect x="540" y="252" width="112" height="42" rx="6" fill="#D85A30" fillOpacity="0.1" stroke="#D85A30" strokeWidth="1" strokeDasharray="5,3"/>
+        <text x="596" y="269" textAnchor="middle" fontSize="11" fontWeight="600" fill="#993C1D" dominantBaseline="central">Forecasting</text>
+        <text x="596" y="283" textAnchor="middle" fontSize="10" fill="#993C1D" dominantBaseline="central">Gong, Clari</text>
+
+        {/* Infrastructure cluster */}
+        <rect x="170" y="425" width="340" height="105" rx="12" fill="#888780" fillOpacity="0.15" stroke="#888780" strokeWidth="1.5"/>
+        <text x="340" y="443" textAnchor="middle" fontSize="11" fontWeight="600" fill="#5F5E5A" letterSpacing="1">INFRASTRUCTURE</text>
+        <rect x="184" y="453" width="140" height="46" rx="6" fill="#888780" stroke="#888780" strokeWidth="1.5"/>
+        <text x="254" y="471" textAnchor="middle" fontSize="12" fontWeight="600" fill="#fff" dominantBaseline="central">iPaaS</text>
+        <text x="254" y="486" textAnchor="middle" fontSize="10" fill="rgba(255,255,255,0.8)" dominantBaseline="central">Make, Zapier, APIs</text>
+        <rect x="336" y="453" width="160" height="46" rx="6" fill="#888780" fillOpacity="0.15" stroke="#888780" strokeWidth="1" strokeDasharray="5,3"/>
+        <text x="416" y="471" textAnchor="middle" fontSize="12" fontWeight="600" fill="#5F5E5A" dominantBaseline="central">MCP / AI agents</text>
+        <text x="416" y="486" textAnchor="middle" fontSize="10" fill="#5F5E5A" dominantBaseline="central">Agentic layer</text>
+
+        {/* Connectors */}
+        <path d="M139 165 Q139 118 200 85" fill="none" stroke="#534AB7" strokeWidth="1.5" markerEnd="url(#arrow)" opacity="0.8"/>
+        <path d="M210 100 Q170 132 155 165" fill="none" stroke="#0F6E56" strokeWidth="1.5" markerEnd="url(#arrow)" opacity="0.8" strokeDasharray="4,3"/>
+        <line x1="264" y1="278" x2="416" y2="278" stroke="#534AB7" strokeWidth="2" markerEnd="url(#arrow)" opacity="0.9"/>
+        <path d="M541 165 Q541 118 480 85" fill="none" stroke="#993C1D" strokeWidth="1.5" markerEnd="url(#arrow)" opacity="0.8"/>
+        <path d="M200 425 Q160 400 139 390" fill="none" stroke="#5F5E5A" strokeWidth="1.5" markerEnd="url(#arrow)" opacity="0.7" strokeDasharray="4,3"/>
+        <path d="M480 425 Q520 400 541 390" fill="none" stroke="#5F5E5A" strokeWidth="1.5" markerEnd="url(#arrow)" opacity="0.7" strokeDasharray="4,3"/>
+        <line x1="340" y1="425" x2="340" y2="132" stroke="#5F5E5A" strokeWidth="1.5" markerEnd="url(#arrow)" opacity="0.6" strokeDasharray="4,3"/>
+
+        {/* Labels */}
+        <text x="152" y="135" textAnchor="start" fontSize="10" fill="#888">Informs ICP</text>
+        <text x="152" y="155" textAnchor="start" fontSize="10" fill="#888">Targets signals</text>
+        <text x="340" y="268" textAnchor="middle" fontSize="10" fill="#888">Feeds CRM and outreach</text>
+        <text x="510" y="135" textAnchor="middle" fontSize="10" fill="#888">Pipeline → reporting</text>
+
+        {/* Legend */}
+        <rect x="20" y="548" width="10" height="10" rx="2" fill="#444441"/>
+        <text x="36" y="557" fontSize="11" fill="#666">Essential</text>
+        <rect x="112" y="548" width="10" height="10" rx="2" fill="none" stroke="#888780" strokeWidth="1" strokeDasharray="3,2"/>
+        <text x="128" y="557" fontSize="11" fill="#666">Optional</text>
+        <circle cx="212" cy="553" r="4" fill="#1D9E75"/>
+        <text x="222" y="557" fontSize="11" fill="#666">Strategy</text>
+        <circle cx="294" cy="553" r="4" fill="#7F77DD"/>
+        <text x="304" y="557" fontSize="11" fill="#666">Data &amp; signals</text>
+        <circle cx="404" cy="553" r="4" fill="#D85A30"/>
+        <text x="414" y="557" fontSize="11" fill="#666">Execution</text>
+        <circle cx="486" cy="553" r="4" fill="#888780"/>
+        <text x="496" y="557" fontSize="11" fill="#666">Infrastructure</text>
       </svg>
-      {selectedNode && (
-        <p className="text-center text-sm text-muted-foreground mt-2">
-          Selected: {nodes.find((n) => n.id === selectedNode)?.label}
-        </p>
-      )}
     </div>
   );
 }
