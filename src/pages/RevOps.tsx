@@ -163,7 +163,9 @@ const RevOps = () => {
         {/* CTA */}
         <section className="py-20 md:py-24 bg-surface-dark text-surface-dark-foreground">
           <div className="container max-w-2xl">
-            Let's talk about what you need.
+            <h2 className="font-serif text-3xl md:text-4xl font-600 mb-4">
+              Let's talk about what you need.
+            </h2>
             <p className="text-lg opacity-70 mb-8">
               A short call to understand your setup. You'll get clear thoughts on what needs building and how I'd approach it. No pitch deck, no pressure.
             </p>

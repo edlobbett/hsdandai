@@ -31,24 +31,6 @@ const trustItems = [
   "Built systems for Housing Hand",
 ];
 
-const personas = [
-  {
-    title: "Operations leads",
-    description:
-      "You're responsible for how the CRM, outreach, and data work together. You know what needs fixing but don't have the time or headcount to do it yourself.",
-  },
-  {
-    title: "Growing teams (10–100 people)",
-    description:
-      "You've outgrown the startup setup. The CRM is in place but it's not configured for your stage — messy data, manual processes, reporting that nobody trusts.",
-  },
-  {
-    title: "Founders scaling a function",
-    description:
-      "You're building a sales or customer operations function and need the systems right from the start. No legacy mess to untangle, but you want it done properly.",
-  },
-];
-
 const outcomesList = [
   {
     title: "CRM that reflects how you actually sell",

@@ -14,28 +14,28 @@ const FivePillarsDiagram = () => {
       </desc>
 
       {/* Four pillar boxes — coral/warm accent matching RevOps Execution cluster */}
-      <g className="fp-coral">
+      <g>
         <rect x="40" y="90" width="145" height="64" rx="8" fill="#D85A30" fillOpacity="0.15" stroke="#D85A30" strokeWidth="1.5" />
-        <text x="112" y="114" textAnchor="middle" dominantBaseline="central" className="fp-th" fill="#993C1D">Strategy</text>
-        <text x="112" y="134" textAnchor="middle" dominantBaseline="central" className="fp-ts" fill="#993C1D">Outcome first</text>
+        <text x="112" y="114" textAnchor="middle" dominantBaseline="central" fill="#993C1D" fontSize="14" fontWeight="600">Strategy</text>
+        <text x="112" y="134" textAnchor="middle" dominantBaseline="central" fill="#993C1D" fontSize="11">Outcome first</text>
       </g>
 
-      <g className="fp-coral">
+      <g>
         <rect x="195" y="90" width="145" height="64" rx="8" fill="#D85A30" fillOpacity="0.15" stroke="#D85A30" strokeWidth="1.5" />
-        <text x="267" y="114" textAnchor="middle" dominantBaseline="central" className="fp-th" fill="#993C1D">Change mgmt</text>
-        <text x="267" y="134" textAnchor="middle" dominantBaseline="central" className="fp-ts" fill="#993C1D">Right people, time</text>
+        <text x="267" y="114" textAnchor="middle" dominantBaseline="central" fill="#993C1D" fontSize="14" fontWeight="600">Change mgmt</text>
+        <text x="267" y="134" textAnchor="middle" dominantBaseline="central" fill="#993C1D" fontSize="11">Right people, time</text>
       </g>
 
-      <g className="fp-coral">
+      <g>
         <rect x="350" y="90" width="145" height="64" rx="8" fill="#D85A30" fillOpacity="0.15" stroke="#D85A30" strokeWidth="1.5" />
-        <text x="422" y="110" textAnchor="middle" dominantBaseline="central" className="fp-th" fill="#993C1D">Systems and</text>
-        <text x="422" y="126" textAnchor="middle" dominantBaseline="central" className="fp-th" fill="#993C1D">process design</text>
+        <text x="422" y="110" textAnchor="middle" dominantBaseline="central" fill="#993C1D" fontSize="14" fontWeight="600">Systems and</text>
+        <text x="422" y="126" textAnchor="middle" dominantBaseline="central" fill="#993C1D" fontSize="14" fontWeight="600">process design</text>
       </g>
 
-      <g className="fp-coral">
+      <g>
         <rect x="505" y="90" width="145" height="64" rx="8" fill="#D85A30" fillOpacity="0.15" stroke="#D85A30" strokeWidth="1.5" />
-        <text x="577" y="114" textAnchor="middle" dominantBaseline="central" className="fp-th" fill="#993C1D">Technology</text>
-        <text x="577" y="134" textAnchor="middle" dominantBaseline="central" className="fp-ts" fill="#993C1D">The enabler</text>
+        <text x="577" y="114" textAnchor="middle" dominantBaseline="central" fill="#993C1D" fontSize="14" fontWeight="600">Technology</text>
+        <text x="577" y="134" textAnchor="middle" dominantBaseline="central" fill="#993C1D" fontSize="11">The enabler</text>
       </g>
 
       {/* Connectors — thin neutral vertical lines matching RevOps divider style */}
@@ -45,10 +45,10 @@ const FivePillarsDiagram = () => {
       <line x1="577" y1="154" x2="577" y2="240" stroke="#5F5E5A" strokeWidth="1" opacity="0.4" />
 
       {/* Data band — purple matching RevOps "Data & signals" cluster */}
-      <g className="fp-purple">
+      <g>
         <rect x="40" y="240" width="610" height="80" rx="12" fill="#7F77DD" fillOpacity="0.15" stroke="#7F77DD" strokeWidth="1.5" />
-        <text x="345" y="270" textAnchor="middle" dominantBaseline="central" className="fp-th" fill="#534AB7">Data</text>
-        <text x="345" y="292" textAnchor="middle" dominantBaseline="central" className="fp-ts" fill="#534AB7">The thread that runs through every pillar</text>
+        <text x="345" y="270" textAnchor="middle" dominantBaseline="central" fill="#534AB7" fontSize="14" fontWeight="600">Data</text>
+        <text x="345" y="292" textAnchor="middle" dominantBaseline="central" fill="#534AB7" fontSize="11">The thread that runs through every pillar</text>
       </g>
 
       {/* Feedback curves — no arrowheads, mutual relationship */}
