@@ -9,6 +9,7 @@ import HubSpotSprints from "./pages/HubSpotSprints.tsx";
 import RevOps from "./pages/RevOps.tsx";
 import DigitalAI from "./pages/DigitalAI.tsx";
 import Insights from "./pages/Insights.tsx";
+import InsightPost from "./pages/InsightPost.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/revops" element={<RevOps />} />
           <Route path="/digital-ai" element={<DigitalAI />} />
           <Route path="/insights" element={<Insights />} />
+          <Route path="/insights/:slug" element={<InsightPost />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
