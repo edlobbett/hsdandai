@@ -1,5 +1,6 @@
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FivePillarsDiagram from "@/components/FivePillarsDiagram";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -65,6 +66,41 @@ const DigitalAI = () => {
               </p>
               <p>
                 <strong>Technology is the enabler, not the starting point.</strong> Every business already has a composable stack — CRM, web, messaging, phone, finance — whether or not that's been a conscious decision. The question isn't whether to integrate; it's whether you're doing it deliberately.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Five Pillars diagram */}
+        <section className="py-16 md:py-20 border-t border-border">
+          <div className="container max-w-3xl">
+            <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-10">
+              The five pillars
+            </h2>
+            <div className="max-w-2xl mx-auto">
+              <FivePillarsDiagram />
+            </div>
+          </div>
+        </section>
+
+        {/* What about AI? */}
+        <section className="py-16 md:py-20 border-t border-border">
+          <div className="container max-w-3xl">
+            <h2 className="font-serif text-3xl md:text-4xl font-600 text-foreground mb-6">
+              What about AI?
+            </h2>
+            <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
+              <p>
+                AI isn't a separate initiative sitting next to digital transformation. For most small and mid-sized businesses, it's a component of it — already showing up as desk-level productivity tools, service bots, and AI features embedded directly inside the CRM itself.
+              </p>
+              <p>
+                What's coming next is agents and workflow automation, extending the exception management that traditional automation has always done — but now able to work on unstructured data too: emails, notes, free text. The shift is significant. The requirement underneath it isn't: AI still needs clean, connected data to work with.
+              </p>
+              <p>
+                I use AI extensively in my own systems, including this one, and build it into client implementations the same way.
+              </p>
+              <p className="text-sm text-muted-foreground italic">
+                A fuller piece on this is coming soon.
               </p>
             </div>
           </div>
