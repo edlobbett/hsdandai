@@ -25,12 +25,6 @@ const tracks = [
   },
 ];
 
-const trustItems = [
-  "HubSpot Specialist",
-  "Fixed-price, fixed-scope delivery",
-  "Built systems for Housing Hand",
-];
-
 const outcomesList = [
   {
     title: "CRM that reflects how you actually sell",
@@ -65,7 +59,7 @@ const Index = () => {
             <div className="animate-fade-in-up">
               <div className="max-w-5xl mx-auto space-y-6">
                 <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl font-600 leading-tight text-foreground text-balance text-center">
-                  RevOps | CRM | Digital Transformation
+                  RevOps | CRM | Digital
                 </h1>
                 <p className="text-base md:text-lg text-accent leading-relaxed max-w-3xl mx-auto text-center">
                   When data, process and stack flow together, RevOps becomes a feedback loop that guides and sharpens strategy. I design and build those systems.
@@ -86,20 +80,6 @@ const Index = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Trust bar */}
-        <section className="bg-[#F5F3F0] border-y border-border py-6">
-          <div className="max-w-6xl mx-auto px-8">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-sm text-slate-700">
-              {trustItems.map((item) => (
-                <div key={item} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent" />
-                  <span>{item}</span>
-                </div>
-              ))}
             </div>
           </div>
         </section>
