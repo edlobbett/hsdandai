@@ -1,7 +1,7 @@
 export default function RevOpsStackDiagram() {
   return (
     <div className="w-full overflow-x-auto py-4 max-w-3xl mx-auto">
-      <svg width="100%" viewBox="0 0 680 660" role="img">
+      <svg width="100%" viewBox="0 0 680 720" role="img">
         <title>RevOps stack diagram</title>
         <desc>Four clusters: Strategy at top, Data and signals left, Execution right, Infrastructure bottom.</desc>
         <defs>
@@ -91,18 +91,18 @@ export default function RevOpsStackDiagram() {
 
 
         {/* Legend */}
-        <rect x="20" y="548" width="10" height="10" rx="2" fill="#444441"/>
-        <text x="36" y="557" fontSize="11" fill="#666">Essential</text>
-        <rect x="112" y="548" width="10" height="10" rx="2" fill="none" stroke="#888780" strokeWidth="1" strokeDasharray="3,2"/>
-        <text x="128" y="557" fontSize="11" fill="#666">Optional</text>
-        <circle cx="212" cy="553" r="4" fill="#1D9E75"/>
-        <text x="222" y="557" fontSize="11" fill="#666">Strategy</text>
-        <circle cx="294" cy="553" r="4" fill="#7F77DD"/>
-        <text x="304" y="557" fontSize="11" fill="#666">Data &amp; signals</text>
-        <circle cx="404" cy="553" r="4" fill="#D85A30"/>
-        <text x="414" y="557" fontSize="11" fill="#666">Execution</text>
-        <circle cx="486" cy="553" r="4" fill="#888780"/>
-        <text x="496" y="557" fontSize="11" fill="#666">Infrastructure</text>
+        <rect x="20" y="628" width="10" height="10" rx="2" fill="#444441"/>
+        <text x="36" y="637" fontSize="11" fill="#666">Essential</text>
+        <rect x="112" y="628" width="10" height="10" rx="2" fill="none" stroke="#888780" strokeWidth="1" strokeDasharray="3,2"/>
+        <text x="128" y="637" fontSize="11" fill="#666">Optional</text>
+        <circle cx="212" cy="633" r="4" fill="#1D9E75"/>
+        <text x="222" y="637" fontSize="11" fill="#666">Strategy</text>
+        <circle cx="294" cy="633" r="4" fill="#7F77DD"/>
+        <text x="304" y="637" fontSize="11" fill="#666">Data &amp; signals</text>
+        <circle cx="404" cy="633" r="4" fill="#D85A30"/>
+        <text x="414" y="637" fontSize="11" fill="#666">Execution</text>
+        <circle cx="486" cy="633" r="4" fill="#888780"/>
+        <text x="496" y="637" fontSize="11" fill="#666">Infrastructure</text>
       </svg>
     </div>
   );
