@@ -19,7 +19,7 @@ const RevOps = () => {
                 Revenue Operations
               </p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-600 leading-tight text-foreground mb-8 text-balance">
-                RevOps is a new name for something good agencies have always done.
+                RevOps - Making and measuring digital delivery
               </h1>
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
                 <p>
