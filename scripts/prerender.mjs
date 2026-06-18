@@ -17,6 +17,9 @@ const routes = [
   "/digital-ai",
   "/property",
   "/insights",
+  "/insights/why-nobody-trusts-the-pipeline-report",
+  "/insights/integrating-with-hubspot",
+  "/insights/your-crm-knows-everything",
 ];
 
 function getFreePort() {
