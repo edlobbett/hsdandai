@@ -23,10 +23,13 @@ const RevOps = () => {
               </h1>
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  CRM as the operational core. Targeting and enrichment feeding the top of the funnel. Lifecycle automation and personalised experience closing the loop. Running a HubSpot partner agency meant building integrated digital stacks before anyone called it Revenue Operations — back when it required a dev team to connect the pieces and significant offline work to get the data right.
+                  RevOps has emerged from digital transformation. It's what digital agencies have been building for years but with new tools and companies that are more digitally mature, it encompasses how we can use data, connected tools and automation to drive revenue.
                 </p>
                 <p>
-                  What's changed is who can do it. AI has moved the technical work into the hands of the commercial team. The architecture is the same. It's just faster, cheaper, and no longer dependent on a queue of dev tickets.
+                  AI helps but it's not the whole game — it means we can create richer connections, reduce exception management in automation loops and add smoother journeys, but the digital stack needs to be there; the strategy needs to be right; the way we measure and a culture of iteration both need to be in place.
+                </p>
+                <p>
+                  I've spent years building data-first digital systems that both fulfil and inform strategy to drive revenue.
                 </p>
               </div>
               <div className="mt-10">
